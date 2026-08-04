@@ -75,7 +75,34 @@
       border-color: var(--accent-color);
     }
 
-    .status-card {
+    .results-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .client-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .client-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .client-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .status-msg {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
@@ -97,16 +124,77 @@
     <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar cliente por nombre o usuario...">
   </div>
 
-  <div class="status-card" id="statusCard">
-    ⚡ Panel conectado correctamente
+  <div id="statusCard" class="status-msg">
+    ⚡ Escribe el nombre de un cliente para buscar
   </div>
 
+  <div id="resultsContainer" class="results-container"></div>
+
   <script>
+    // URL DE TU GOOGLE APPS SCRIPT
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4vh7RLYYmvcq6bCfG39Q0idElQeOkl45GaR_Uv5o-sYYzmjlvTJj2whsL7QzjazcS/exec";
+
     // Inicialización del SDK de Telegram
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
       tg.expand();
+    }
+
+    const searchInput = document.getElementById('searchInput');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const statusCard = document.getElementById('statusCard');
+
+    let debounceTimer;
+
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(debounceTimer);
+      const query = e.target.value.trim();
+
+      if (query.length < 2) {
+        resultsContainer.innerHTML = '';
+        statusCard.style.display = 'block';
+        statusCard.textContent = '⚡ Escribe al menos 2 letras para buscar';
+        return;
+      }
+
+      statusCard.style.display = 'block';
+      statusCard.textContent = '🔄 Buscando en la base de datos...';
+
+      debounceTimer = setTimeout(() => {
+        fetchData(query);
+      }, 400);
+    });
+
+    async function fetchData(query) {
+      try {
+        const response = await fetch(`${SCRIPT_URL}?action=search&q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        resultsContainer.innerHTML = '';
+
+        if (data.status === 'success' && data.results.length > 0) {
+          statusCard.style.display = 'none';
+          data.results.forEach(client => {
+            const card = document.createElement('div');
+            card.className = 'client-card';
+            card.innerHTML = `
+              <div class="client-name">👤 ${client.nombre || 'Sin nombre'}</div>
+              <div class="client-info">🔑 Usuario: <strong>${client.usuario || 'N/A'}</strong></div>
+              <div class="client-info">📅 Vence: ${client.vencimiento || 'N/A'}</div>
+              <div class="client-info">📱 Servicio: ${client.servicio || 'N/A'}</div>
+            `;
+            resultsContainer.appendChild(card);
+          });
+        } else {
+          statusCard.style.display = 'block';
+          statusCard.textContent = '❌ No se encontraron clientes';
+        }
+      } catch (error) {
+        statusCard.style.display = 'block';
+        statusCard.textContent = '⚠️ Error de conexión con Google Sheets';
+        console.error(error);
+      }
     }
   </script>
 </body>
