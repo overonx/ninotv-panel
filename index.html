@@ -7,85 +7,24 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
-    body {
-      background-color: #080711;
-      color: #ffffff;
-      padding: 14px;
-      min-height: 100vh;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: #080711; color: #ffffff; padding: 14px; min-height: 100vh; }
     
-    .app-container {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+    .app-container { width: 100%; max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
 
-    /* Top Bar */
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .icon-btn {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 20px;
-    }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; }
+    .icon-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; }
 
-    /* Hero Banner */
     .hero-logo { text-align: center; margin: 4px 0; }
-    .hero-logo h1 {
-      font-size: 32px;
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 0 0 14px #a855f7;
-    }
+    .hero-logo h1 { font-size: 32px; font-weight: 900; color: #fff; text-shadow: 0 0 14px #a855f7; }
 
-    /* Section Title */
-    .section-title {
-      font-size: 20px;
-      font-weight: 800;
-      color: #c084fc;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .section-subtitle { font-size: 14px; color: #94a3b8; margin-top: -10px; }
+    .metrics-bar { background: #131127; border: 1px solid rgba(168,85,247,0.3); border-radius: 16px; padding: 12px; display: flex; justify-content: space-around; text-align: center; }
+    .metric-item { display: flex; flex-direction: column; gap: 2px; }
+    .metric-item span { font-size: 11px; color: #94a3b8; font-weight: 700; text-transform: uppercase; }
+    .metric-item b { font-size: 18px; color: #c084fc; font-weight: 900; }
 
-    /* Cards Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .card {
-      background: #0f0d1b;
-      border-radius: 20px;
-      padding: 16px 14px;
-      border: 2px solid transparent;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      cursor: pointer;
-      transition: transform 0.1s ease;
-    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card { background: #0f0d1b; border-radius: 20px; padding: 16px 14px; border: 2px solid transparent; display: flex; flex-direction: column; gap: 10px; cursor: pointer; }
     .card:active { transform: scale(0.97); }
 
     .card-xuper { border-color: #10b981; box-shadow: 0 0 14px rgba(16, 185, 129, 0.25); }
@@ -105,7 +44,6 @@
     .total-icon { font-size: 24px; }
     .total-number { font-size: 34px; font-weight: 900; }
 
-    /* Stats List */
     .stats-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
     .stat-row { display: flex; justify-content: space-between; align-items: center; }
     .stat-left { display: flex; align-items: center; gap: 8px; color: #f1f5f9; font-size: 14px; font-weight: 600; }
@@ -116,113 +54,35 @@
     .dot-inactive { background-color: #64748b; }
     .stat-count { font-weight: 900; font-size: 16px; }
 
-    /* Search Bar */
-    .search-box {
-      background: #131124;
-      border: 2px solid #a855f7;
-      border-radius: 30px;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 0 18px rgba(168, 85, 247, 0.35);
-    }
+    .search-box { background: #131124; border: 2px solid #a855f7; border-radius: 30px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 0 18px rgba(168, 85, 247, 0.35); }
     .search-box i { color: #94a3b8; font-size: 20px; }
-    .search-input {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 17px;
-      font-weight: 600;
-      width: 100%;
-    }
+    .search-input { background: transparent; border: none; outline: none; color: #fff; font-size: 17px; font-weight: 600; width: 100%; }
     .search-input::placeholder { color: #64748b; }
 
-    /* Results */
     .results-container { display: flex; flex-direction: column; gap: 12px; }
     
-    /* Agrupado por Cliente */
-    .grouped-card {
-      background: #131127;
-      border: 1.5px solid rgba(168, 85, 247, 0.4);
-      border-radius: 18px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      cursor: pointer;
-    }
+    .grouped-card { background: #131127; border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; }
     .client-header-title { font-size: 18px; font-weight: 900; color: #ffffff; }
-    .services-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .service-chip {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      padding: 8px 12px;
-      font-size: 13px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-    .service-chip-name { font-weight: 700; }
-    .service-chip-date { color: #94a3b8; font-size: 12px; }
+    .services-grid { display: flex; flex-direction: column; gap: 8px; }
+    .service-chip { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 10px 14px; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .service-chip-name { font-weight: 800; font-size: 15px; }
+    .service-chip-date { color: #94a3b8; font-size: 13px; margin-top: 2px; }
 
-    .status-badge {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
+    .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
     .badge-activo { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
     .badge-vencido { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
     .badge-vencer { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #eab308; }
 
-    /* Modal Emergente */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(5px);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 16px;
-    }
-    .modal-content {
-      background: #131127;
-      border: 2px solid #a855f7;
-      border-radius: 24px;
-      width: 100%;
-      max-width: 440px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
-    }
+    /* Modal emergente */
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 16px; }
+    .modal-content { background: #131127; border: 2px solid #a855f7; border-radius: 24px; width: 100%; max-width: 440px; padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 0 30px rgba(168, 85, 247, 0.5); }
     .modal-header { display: flex; justify-content: space-between; align-items: center; }
     .modal-title { font-size: 22px; font-weight: 900; color: #fff; }
     .close-btn { font-size: 24px; color: #94a3b8; cursor: pointer; }
 
-    .action-btn {
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      border: none;
-      font-size: 16px;
-      font-weight: 800;
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
+    .action-btn { width: 100%; padding: 14px; border-radius: 14px; border: none; font-size: 16px; font-weight: 800; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
     .btn-renew { background: #10b981; }
+    .btn-sports { background: #eab308; color: #000; }
     .btn-notify { background: #0088cc; }
     .btn-close { background: #334155; }
   </style>
@@ -239,16 +99,16 @@
       <h1>👑 NINOTV <span style="color:#a855f7">VIP</span></h1>
     </div>
 
-    <div class="section-title">
-      <i class="fa-solid fa-arrow-right"></i> PANEL PRINCIPAL
-    </div>
-    <div class="section-subtitle">
-      Resumen general de todos los servicios
+    <!-- Barra de Métricas Generales del Bot -->
+    <div class="metrics-bar">
+      <div class="metric-item"><span>⭐ Combos</span><b id="meta-combos">0</b></div>
+      <div class="metric-item"><span>👻 Inactivos BD</span><b id="meta-inactivos">0</b></div>
+      <div class="metric-item"><span>📊 Total BD</span><b id="meta-total">0</b></div>
     </div>
 
-    <!-- 2x2 Cards -->
+    <!-- 2x2 Grid de Servicios -->
     <div class="grid">
-      <div class="card card-xuper" onclick="filterByService('Xúper TV')">
+      <div class="card card-xuper" onclick="filterByService('xuper')">
         <div class="card-title">XUPER TV</div>
         <div class="total-container">
           <div class="total-label">Clientes Totales</div>
@@ -265,7 +125,7 @@
         </div>
       </div>
 
-      <div class="card card-flujo" onclick="filterByService('Flujo TV')">
+      <div class="card card-flujo" onclick="filterByService('flujo')">
         <div class="card-title">FLUJO TV</div>
         <div class="total-container">
           <div class="total-label">Clientes Totales</div>
@@ -282,7 +142,7 @@
         </div>
       </div>
 
-      <div class="card card-red" onclick="filterByService('Red TV')">
+      <div class="card card-red" onclick="filterByService('red')">
         <div class="card-title">RED TV</div>
         <div class="total-container">
           <div class="total-label">Clientes Totales</div>
@@ -299,7 +159,7 @@
         </div>
       </div>
 
-      <div class="card card-lion" onclick="filterByService('Lion TV')">
+      <div class="card card-lion" onclick="filterByService('lion')">
         <div class="card-title">LION TV</div>
         <div class="total-container">
           <div class="total-label">Clientes Totales</div>
@@ -317,19 +177,18 @@
       </div>
     </div>
 
-    <!-- Search Bar Below Cards -->
+    <!-- Search Bar -->
     <div class="search-wrapper">
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" id="searchInput" class="search-input" placeholder="Buscar cliente..." oninput="handleSearch()">
-        <i class="fa-solid fa-microphone"></i>
       </div>
     </div>
 
     <div class="results-container" id="resultsContainer"></div>
   </div>
 
-  <!-- Modal Interactivo del Cliente -->
+  <!-- Modal Interactivo -->
   <div class="modal-overlay" id="clientModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -339,7 +198,8 @@
       
       <div id="modalServicesList"></div>
 
-      <button class="action-btn btn-renew" onclick="renewService()"><i class="fa-solid fa-rotate-right"></i> Renovar +30 Días</button>
+      <button class="action-btn btn-renew" onclick="renewSelectedService()"><i class="fa-solid fa-rotate-right"></i> Renovar +31 Días en Vivo</button>
+      <button class="action-btn btn-sports" id="btnSportsToggle" onclick="toggleSports()"><i class="fa-solid fa-futbol"></i> Alternar Paquete Deportes</button>
       <button class="action-btn btn-notify" onclick="sendInvoice()"><i class="fa-brands fa-telegram"></i> Enviar Mensaje de Cobro</button>
       <button class="action-btn btn-close" onclick="closeModal()">Cerrar</button>
     </div>
@@ -363,10 +223,12 @@
           updateCard('flujo', data.stats.flujo);
           updateCard('red', data.stats.red);
           updateCard('lion', data.stats.lion);
+
+          document.getElementById('meta-combos').innerText = data.stats.generales.combos;
+          document.getElementById('meta-inactivos').innerText = data.stats.generales.inactivosUnicos;
+          document.getElementById('meta-total').innerText = data.stats.generales.totalRealBD;
         }
-      } catch (e) {
-        console.error("Error cargando estadísticas", e);
-      }
+      } catch (e) { console.error("Error al cargar stats", e); }
     }
 
     function updateCard(prefix, stats) {
@@ -389,14 +251,13 @@
       fetchClients(query);
     }
 
-    function filterByService(serviceName) {
-      document.getElementById('searchInput').value = serviceName;
-      fetchClients(serviceName);
+    function filterByService(serviceKey) {
+      fetchClients(serviceKey);
     }
 
     function fetchClients(query) {
       const container = document.getElementById('resultsContainer');
-      container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;"><i class="fa-solid fa-spinner fa-spin"></i> Cargando...</div>';
+      container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;"><i class="fa-solid fa-spinner fa-spin"></i> Consultando base de datos...</div>';
 
       searchTimeout = setTimeout(async () => {
         try {
@@ -406,52 +267,38 @@
           if (data.status === 'success' && data.results.length > 0) {
             renderGroupedClients(data.results);
           } else {
-            container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;">❌ No se encontraron resultados</div>';
+            container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;">❌ No se encontraron clientes</div>';
           }
         } catch (e) {
-          container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;">⚠️ Error de conexión</div>';
+          container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;">⚠️ Error conectando al servidor</div>';
         }
       }, 300);
     }
 
-    // AGRUPAR SERVICIOS POR CADA CLIENTE (Evita que Isai salga 4 veces)
     function renderGroupedClients(results) {
       const container = document.getElementById('resultsContainer');
-      const grouped = {};
-
-      results.forEach(item => {
-        const name = item.nombre;
-        if (!grouped[name]) {
-          grouped[name] = [];
-        }
-        grouped[name].push(item);
-      });
-
-      container.innerHTML = Object.keys(grouped).map(name => {
-        const services = grouped[name];
-        return `
-          <div class="grouped-card" onclick='openModal("${name.replace(/'/g, "\\'")}", ${JSON.stringify(services).replace(/"/g, '&quot;')})'>
-            <div class="client-header-title">👤 ${name}</div>
-            <div class="services-grid">
-              ${services.map(s => `
-                <div class="service-chip">
-                  <div>
-                    <div class="service-chip-name">${s.servicio}</div>
-                    <div class="service-chip-date">Vence: ${s.vencimiento}</div>
-                  </div>
-                  <span class="status-badge ${getBadgeClass(s.estado)}">${s.estado}</span>
+      container.innerHTML = results.map(client => `
+        <div class="grouped-card" onclick='openModal("${client.nombre.replace(/'/g, "\\'")}", ${JSON.stringify(client.servicios).replace(/"/g, '&quot;')})'>
+          <div class="client-header-title">👤 ${client.nombre}</div>
+          <div class="services-grid">
+            ${client.servicios.map(s => `
+              <div class="service-chip">
+                <div>
+                  <div class="service-chip-name">${s.servicio} ${s.deportes ? '⚽' : ''}</div>
+                  <div class="service-chip-date">Vence: ${s.vencimiento}</div>
                 </div>
-              `).join('')}
-            </div>
+                <span class="status-badge ${getBadgeClass(s.estado)}">${s.estado}</span>
+              </div>
+            `).join('')}
           </div>
-        `;
-      }).join('');
+        </div>
+      `).join('');
     }
 
     function getBadgeClass(estado) {
       const e = (estado || '').toLowerCase();
       if (e.includes('activo')) return 'badge-activo';
-      if (e.includes('vencido')) return 'badge-vencido';
+      if (e.includes('vencido') || e.includes('inactivo')) return 'badge-vencido';
       if (e.includes('vencer')) return 'badge-vencer';
       return 'badge-activo';
     }
@@ -464,7 +311,7 @@
       listContainer.innerHTML = services.map(s => `
         <div class="service-chip" style="margin-bottom:8px;">
           <div>
-            <div class="service-chip-name">${s.servicio}</div>
+            <div class="service-chip-name">${s.servicio} ${s.deportes ? '⚽' : ''}</div>
             <div class="service-chip-date">Vence: ${s.vencimiento}</div>
           </div>
           <span class="status-badge ${getBadgeClass(s.estado)}">${s.estado}</span>
@@ -478,16 +325,40 @@
       document.getElementById('clientModal').style.display = 'none';
     }
 
-    async function renewService() {
+    async function renewSelectedService() {
+      if (!selectedClient || selectedClient.services.length === 0) return;
+      const primaryService = selectedClient.services[0]; // Renueva el primer servicio activo
+      
+      if (confirm(`¿Renovar 31 días a ${selectedClient.name} en ${primaryService.servicio}?`)) {
+        try {
+          const res = await fetch(`${API_URL}?action=renovar&nombre=${encodeURIComponent(selectedClient.name)}&servicio=${primaryService.key}`);
+          const data = await res.json();
+          alert(data.message);
+          closeModal();
+          loadStats();
+          handleSearch();
+        } catch (e) {
+          alert("Error al intentar renovar.");
+        }
+      }
+    }
+
+    async function toggleSports() {
       if (!selectedClient) return;
-      alert(`Renovación iniciada para ${selectedClient.name}`);
-      // Lógica de actualización en Sheets
-      closeModal();
+      try {
+        const res = await fetch(`${API_URL}?action=toggle_deportes&nombre=${encodeURIComponent(selectedClient.name)}`);
+        const data = await res.json();
+        alert(`Estado de deportes actualizado: ${data.deportes}`);
+        closeModal();
+        handleSearch();
+      } catch (e) {
+        alert("Error al modificar paquete de deportes.");
+      }
     }
 
     function sendInvoice() {
       if (!selectedClient) return;
-      const msg = `Hola ${selectedClient.name}, te recordamos la renovación de tus servicios NINOTV VIP.`;
+      const msg = `Hola ${selectedClient.name}, te recordamos la renovación de tu servicio NINOTV VIP.`;
       window.open(`https://t.me/share/url?url=&text=${encodeURIComponent(msg)}`);
     }
 
