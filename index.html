@@ -68,23 +68,26 @@
     .service-chip-name { font-weight: 800; font-size: 15px; }
     .service-chip-date { color: #94a3b8; font-size: 13px; margin-top: 2px; }
 
-    .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; display: inline-flex; align-items: center; gap: 4px; }
     .badge-activo { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
     .badge-vencido { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
     .badge-vencer { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #eab308; }
+    .badge-inactivo { background: rgba(100, 116, 139, 0.25); color: #f87171; border: 1px solid #ef4444; }
 
     /* Modal emergente */
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 16px; }
-    .modal-content { background: #131127; border: 2px solid #a855f7; border-radius: 24px; width: 100%; max-width: 440px; padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 0 30px rgba(168, 85, 247, 0.5); }
+    .modal-content { background: #131127; border: 2px solid #a855f7; border-radius: 24px; width: 100%; max-width: 440px; padding: 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 0 30px rgba(168, 85, 247, 0.5); max-height: 90vh; overflow-y: auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; }
     .modal-title { font-size: 22px; font-weight: 900; color: #fff; }
     .close-btn { font-size: 24px; color: #94a3b8; cursor: pointer; }
 
-    .action-btn { width: 100%; padding: 14px; border-radius: 14px; border: none; font-size: 16px; font-weight: 800; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .btn-renew { background: #10b981; }
+    .action-btn { width: 100%; padding: 12px; border-radius: 14px; border: none; font-size: 15px; font-weight: 800; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .btn-renew { background: #10b981; margin-top: 4px; }
     .btn-sports { background: #eab308; color: #000; }
     .btn-notify { background: #0088cc; }
     .btn-close { background: #334155; }
+    
+    .renew-actions-container { display: flex; flex-direction: column; gap: 8px; margin: 6px 0; }
   </style>
 </head>
 <body>
@@ -99,14 +102,12 @@
       <h1>👑 NINOTV <span style="color:#a855f7">VIP</span></h1>
     </div>
 
-    <!-- Muestra Métricas Reales -->
     <div class="metrics-bar">
       <div class="metric-item"><span>⭐ Combos</span><b id="meta-combos">...</b></div>
-      <div class="metric-item"><span>👻 Inactivos BD</span><b id="meta-inactivos">...</b></div>
+      <div class="metric-item"><span>💀 Inactivos BD</span><b id="meta-inactivos">...</b></div>
       <div class="metric-item"><span>📊 Total BD</span><b id="meta-total">...</b></div>
     </div>
 
-    <!-- 2x2 Cards Interactivos -->
     <div class="grid">
       <div class="card card-xuper" onclick="filterByService('xuper')">
         <div class="card-title">XUPER TV</div>
@@ -121,7 +122,7 @@
           <div class="stat-row"><div class="stat-left"><div class="dot dot-active"></div>Activos</div><div class="stat-count" id="xuper-activos" style="color:#4ade80">0</div></div>
           <div class="stat-row"><div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div><div class="stat-count" id="xuper-vencer" style="color:#facc15">0</div></div>
           <div class="stat-row"><div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div><div class="stat-count" id="xuper-vencidos" style="color:#f87171">0</div></div>
-          <div class="stat-row"><div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div><div class="stat-count" id="xuper-inactivos" style="color:#94a3b8">0</div></div>
+          <div class="stat-row"><div class="stat-left"><div class="dot dot-inactive"></div>Inactivos (+2s)</div><div class="stat-count" id="xuper-inactivos" style="color:#f87171">0</div></div>
         </div>
       </div>
 
@@ -138,7 +139,7 @@
           <div class="stat-row"><div class="stat-left"><div class="dot dot-active"></div>Activos</div><div class="stat-count" id="flujo-activos" style="color:#4ade80">0</div></div>
           <div class="stat-row"><div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div><div class="stat-count" id="flujo-vencer" style="color:#facc15">0</div></div>
           <div class="stat-row"><div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div><div class="stat-count" id="flujo-vencidos" style="color:#f87171">0</div></div>
-          <div class="stat-row"><div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div><div class="stat-count" id="flujo-inactivos" style="color:#94a3b8">0</div></div>
+          <div class="stat-row"><div class="stat-left"><div class="dot dot-inactive"></div>Inactivos (+2s)</div><div class="stat-count" id="flujo-inactivos" style="color:#f87171">0</div></div>
         </div>
       </div>
 
@@ -155,7 +156,7 @@
           <div class="stat-row"><div class="stat-left"><div class="dot dot-active"></div>Activos</div><div class="stat-count" id="red-activos" style="color:#4ade80">0</div></div>
           <div class="stat-row"><div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div><div class="stat-count" id="red-vencer" style="color:#facc15">0</div></div>
           <div class="stat-row"><div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div><div class="stat-count" id="red-vencidos" style="color:#f87171">0</div></div>
-          <div class="stat-row"><div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div><div class="stat-count" id="red-inactivos" style="color:#94a3b8">0</div></div>
+          <div class="stat-row"><div class="stat-left"><div class="dot dot-inactive"></div>Inactivos (+2s)</div><div class="stat-count" id="red-inactivos" style="color:#f87171">0</div></div>
         </div>
       </div>
 
@@ -172,12 +173,11 @@
           <div class="stat-row"><div class="stat-left"><div class="dot dot-active"></div>Activos</div><div class="stat-count" id="lion-activos" style="color:#4ade80">0</div></div>
           <div class="stat-row"><div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div><div class="stat-count" id="lion-vencer" style="color:#facc15">0</div></div>
           <div class="stat-row"><div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div><div class="stat-count" id="lion-vencidos" style="color:#f87171">0</div></div>
-          <div class="stat-row"><div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div><div class="stat-count" id="lion-inactivos" style="color:#94a3b8">0</div></div>
+          <div class="stat-row"><div class="stat-left"><div class="dot dot-inactive"></div>Inactivos (+2s)</div><div class="stat-count" id="lion-inactivos" style="color:#f87171">0</div></div>
         </div>
       </div>
     </div>
 
-    <!-- Barra de Búsqueda -->
     <div class="search-wrapper">
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -188,7 +188,7 @@
     <div class="results-container" id="resultsContainer"></div>
   </div>
 
-  <!-- Modal Interactivo -->
+  <!-- Modal Interactivo Dinámico -->
   <div class="modal-overlay" id="clientModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -198,8 +198,10 @@
       
       <div id="modalServicesList"></div>
 
-      <button class="action-btn btn-renew" onclick="renewSelectedService()"><i class="fa-solid fa-rotate-right"></i> Renovar +31 Días en Vivo</button>
-      <button class="action-btn btn-sports" id="btnSportsToggle" onclick="toggleSports()"><i class="fa-solid fa-futbol"></i> Alternar Paquete Deportes</button>
+      <!-- Botones dinámicos de renovación por servicio -->
+      <div id="renewButtonsContainer" class="renew-actions-container"></div>
+
+      <button class="action-btn btn-sports" id="btnSportsToggle" onclick="toggleSports()"><i class="fa-solid fa-futbol"></i> Alternar Deportes (Xúper)</button>
       <button class="action-btn btn-notify" onclick="sendInvoice()"><i class="fa-brands fa-telegram"></i> Enviar Mensaje de Cobro</button>
       <button class="action-btn btn-close" onclick="closeModal()">Cerrar</button>
     </div>
@@ -252,12 +254,13 @@
     }
 
     function filterByService(serviceKey) {
+      document.getElementById('searchInput').value = serviceKey;
       fetchClients(serviceKey);
     }
 
     function fetchClients(query) {
       const container = document.getElementById('resultsContainer');
-      container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;"><i class="fa-solid fa-spinner fa-spin"></i> Consultando base de datos...</div>';
+      container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8;"><i class="fa-solid fa-spinner fa-spin"></i> Consultando clientes...</div>';
 
       searchTimeout = setTimeout(async () => {
         try {
@@ -287,7 +290,7 @@
                   <div class="service-chip-name">${s.servicio} ${s.deportes ? '⚽' : ''}</div>
                   <div class="service-chip-date">Vence: ${s.vencimiento}</div>
                 </div>
-                <span class="status-badge ${getBadgeClass(s.estado)}">${s.estado}</span>
+                <span class="status-badge ${getBadgeClass(s.estado)}">${renderStatusLabel(s.estado)}</span>
               </div>
             `).join('')}
           </div>
@@ -295,11 +298,19 @@
       `).join('');
     }
 
+    function renderStatusLabel(estado) {
+      const e = (estado || '').toUpperCase();
+      if (e.includes('INACTIVO')) return '💀 INACTIVO';
+      if (e.includes('VENCIDO')) return '❌ VENCIDO';
+      if (e.includes('POR VENCER') || e.includes('VENCER')) return '⏰ POR VENCER';
+      return '🟢 ACTIVO';
+    }
+
     function getBadgeClass(estado) {
-      const e = (estado || '').toLowerCase();
-      if (e.includes('activo')) return 'badge-activo';
-      if (e.includes('vencido') || e.includes('inactivo')) return 'badge-vencido';
-      if (e.includes('vencer')) return 'badge-vencer';
+      const e = (estado || '').toUpperCase();
+      if (e.includes('INACTIVO')) return 'badge-inactivo';
+      if (e.includes('VENCIDO')) return 'badge-vencido';
+      if (e.includes('POR VENCER') || e.includes('VENCER')) return 'badge-vencer';
       return 'badge-activo';
     }
 
@@ -314,8 +325,16 @@
             <div class="service-chip-name">${s.servicio} ${s.deportes ? '⚽' : ''}</div>
             <div class="service-chip-date">Vence: ${s.vencimiento}</div>
           </div>
-          <span class="status-badge ${getBadgeClass(s.estado)}">${s.estado}</span>
+          <span class="status-badge ${getBadgeClass(s.estado)}">${renderStatusLabel(s.estado)}</span>
         </div>
+      `).join('');
+
+      // Renderizar un botón de renovación específico por CADA servicio
+      const btnContainer = document.getElementById('renewButtonsContainer');
+      btnContainer.innerHTML = services.map(s => `
+        <button class="action-btn btn-renew" onclick="renewSpecificService('${s.key}', '${s.servicio}')">
+          <i class="fa-solid fa-rotate-right"></i> Renovar ${s.servicio} (+31 Días)
+        </button>
       `).join('');
 
       document.getElementById('clientModal').style.display = 'flex';
@@ -325,13 +344,11 @@
       document.getElementById('clientModal').style.display = 'none';
     }
 
-    async function renewSelectedService() {
-      if (!selectedClient || selectedClient.services.length === 0) return;
-      const primaryService = selectedClient.services[0];
-      
-      if (confirm(`¿Renovar 31 días a ${selectedClient.name} en ${primaryService.servicio}?`)) {
+    async function renewSpecificService(serviceKey, serviceName) {
+      if (!selectedClient) return;
+      if (confirm(`¿Renovar 31 días a ${selectedClient.name} en ${serviceName}?`)) {
         try {
-          const res = await fetch(`${API_URL}?action=renovar&nombre=${encodeURIComponent(selectedClient.name)}&servicio=${primaryService.key}`);
+          const res = await fetch(`${API_URL}?action=renovar&nombre=${encodeURIComponent(selectedClient.name)}&servicio=${serviceKey}`);
           const data = await res.json();
           alert(data.message);
           closeModal();
@@ -348,11 +365,11 @@
       try {
         const res = await fetch(`${API_URL}?action=toggle_deportes&nombre=${encodeURIComponent(selectedClient.name)}`);
         const data = await res.json();
-        alert(`Estado de deportes actualizado: ${data.deportes}`);
+        alert(`Estado de deportes en Xúper TV: ${data.deportes}`);
         closeModal();
         handleSearch();
       } catch (e) {
-        alert("Error al modificar paquete de deportes.");
+        alert("Error al modificar deportes.");
       }
     }
 
