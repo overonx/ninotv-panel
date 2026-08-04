@@ -16,67 +16,74 @@
     body {
       background-color: #080711;
       color: #ffffff;
-      padding: 16px;
+      padding: 14px;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
     
-    /* Top Header */
+    .app-container {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Top Bar */
     .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
     }
     .icon-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      width: 40px;
-      height: 40px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-size: 18px;
+      font-size: 20px;
       position: relative;
     }
     .badge {
       position: absolute;
       top: 6px;
       right: 6px;
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       background-color: #ff3b30;
       border-radius: 50%;
     }
 
-    /* Logo Banner */
+    /* Hero Banner */
     .hero-logo {
       text-align: center;
-      margin: 10px 0 20px 0;
+      margin: 4px 0;
     }
-    .hero-logo img {
-      max-width: 220px;
-      height: auto;
-      filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4));
+    .hero-logo h1 {
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 1px;
+      text-shadow: 0 0 14px #a855f7;
     }
 
-    /* Section Header */
+    /* Section Title */
     .section-title {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 20px;
+      font-weight: 800;
       color: #c084fc;
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 4px;
+      gap: 10px;
     }
     .section-subtitle {
-      font-size: 12px;
+      font-size: 14px;
       color: #94a3b8;
-      margin-bottom: 16px;
+      margin-top: -10px;
     }
 
     /* Cards Grid */
@@ -84,80 +91,51 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-bottom: 20px;
     }
 
     .card {
       background: #0f0d1b;
-      border-radius: 16px;
-      padding: 14px;
-      border: 1.5px solid transparent;
+      border-radius: 20px;
+      padding: 16px 14px;
+      border: 2px solid transparent;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      gap: 10px;
     }
 
-    /* Card Themes */
-    .card-xuper {
-      border-color: #10b981;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
-    }
-    .card-flujo {
-      border-color: #a855f7;
-      box-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
-    }
-    .card-red {
-      border-color: #ef4444;
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
-    }
-    .card-lion {
-      border-color: #eab308;
-      box-shadow: 0 0 12px rgba(234, 179, 8, 0.25);
-    }
+    .card-xuper { border-color: #10b981; box-shadow: 0 0 14px rgba(16, 185, 129, 0.25); }
+    .card-flujo { border-color: #a855f7; box-shadow: 0 0 14px rgba(168, 85, 247, 0.25); }
+    .card-red   { border-color: #ef4444; box-shadow: 0 0 14px rgba(239, 68, 68, 0.25); }
+    .card-lion  { border-color: #eab308; box-shadow: 0 0 14px rgba(234, 179, 8, 0.25); }
 
     .card-title {
-      font-size: 15px;
-      font-weight: 800;
+      font-size: 19px;
+      font-weight: 900;
       text-align: center;
       letter-spacing: 0.5px;
     }
     .card-xuper .card-title { color: #34d399; }
     .card-flujo .card-title { color: #c084fc; }
-    .card-red .card-title { color: #f87171; }
-    .card-lion .card-title { color: #fbbf24; }
+    .card-red .card-title   { color: #f87171; }
+    .card-lion .card-title  { color: #fbbf24; }
 
-    .total-container {
-      text-align: center;
-      margin: 4px 0;
-    }
-    .total-label {
-      font-size: 10px;
-      color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    .total-container { text-align: center; }
+    .total-label { font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase; }
     .total-num-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       margin-top: 2px;
     }
-    .total-icon {
-      font-size: 18px;
-    }
-    .total-number {
-      font-size: 26px;
-      font-weight: 900;
-    }
+    .total-icon { font-size: 24px; }
+    .total-number { font-size: 34px; font-weight: 900; }
 
-    /* Stats List */
+    /* Stats List con letras GRANDES */
     .stats-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      font-size: 11px;
+      gap: 8px;
       margin-top: 4px;
     }
     .stat-row {
@@ -168,82 +146,72 @@
     .stat-left {
       display: flex;
       align-items: center;
-      gap: 6px;
-      color: #cbd5e1;
+      gap: 8px;
+      color: #f1f5f9;
+      font-size: 14px;
+      font-weight: 600;
     }
     .dot {
-      width: 7px;
-      height: 7px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
     }
     .dot-active { background-color: #22c55e; }
     .dot-warning { background-color: #eab308; }
     .dot-expired { background-color: #ef4444; }
     .dot-inactive { background-color: #64748b; }
+    
     .stat-count {
-      font-weight: 700;
-    }
-
-    /* Search Bar Below Cards */
-    .search-wrapper {
-      margin-top: 10px;
-    }
-    .search-box {
-      background: #131124;
-      border: 1.5px solid #a855f7;
-      border-radius: 30px;
-      padding: 10px 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
-    }
-    .search-box i {
-      color: #94a3b8;
+      font-weight: 900;
       font-size: 16px;
     }
+
+    /* Search Bar */
+    .search-box {
+      background: #131124;
+      border: 2px solid #a855f7;
+      border-radius: 30px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 0 18px rgba(168, 85, 247, 0.35);
+    }
+    .search-box i { color: #94a3b8; font-size: 20px; }
     .search-input {
       background: transparent;
       border: none;
       outline: none;
       color: #fff;
-      font-size: 14px;
+      font-size: 17px;
+      font-weight: 600;
       width: 100%;
     }
-    .search-input::placeholder {
-      color: #64748b;
-    }
+    .search-input::placeholder { color: #64748b; }
 
-    /* Results Section */
+    /* Results */
     .results-container {
-      margin-top: 16px;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
     .client-card {
       background: #131127;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .client-info h4 {
-      font-size: 14px;
-      color: #ffffff;
-      margin-bottom: 2px;
-    }
-    .client-info p {
-      font-size: 11px;
-      color: #94a3b8;
-    }
+    .client-info h4 { font-size: 17px; color: #ffffff; margin-bottom: 4px; font-weight: 800; }
+    .client-info p { font-size: 13px; color: #94a3b8; }
+    
     .status-badge {
-      padding: 4px 10px;
+      padding: 6px 14px;
       border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       text-transform: uppercase;
     }
     .badge-activo { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
@@ -253,183 +221,178 @@
     .no-results {
       text-align: center;
       padding: 20px;
-      color: #64748b;
-      font-size: 13px;
+      color: #94a3b8;
+      font-size: 15px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="icon-btn"><i class="fa-solid fa-bars"></i></div>
-    <div class="icon-btn">
-      <i class="fa-regular fa-bell"></i>
-      <div class="badge"></div>
-    </div>
-  </div>
-
-  <!-- Hero Logo -->
-  <div class="hero-logo">
-    <h1 style="font-size:24px; font-weight:900; color:#fff; letter-spacing:1px; text-shadow:0 0 10px #a855f7;">
-      👑 NINOTV <span style="color:#a855f7">VIP</span>
-    </h1>
-  </div>
-
-  <!-- Section Title -->
-  <div class="section-title">
-    <i class="fa-solid fa-arrow-right"></i> PANEL PRINCIPAL
-  </div>
-  <div class="section-subtitle">
-    Resumen general de todos los servicios
-  </div>
-
-  <!-- Cards Grid (2x2) -->
-  <div class="grid">
-    
-    <!-- XuperTV -->
-    <div class="card card-xuper">
-      <div class="card-title">XUPER TV</div>
-      <div class="total-container">
-        <div class="total-label">Clientes Totales</div>
-        <div class="total-num-wrap">
-          <i class="fa-solid fa-users total-icon" style="color:#34d399"></i>
-          <span class="total-number" id="xuper-total">0</span>
-        </div>
-      </div>
-      <div class="stats-list">
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-active"></div>Activos</div>
-          <div class="stat-count" id="xuper-activos" style="color:#4ade80">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div>
-          <div class="stat-count" id="xuper-vencer" style="color:#facc15">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div>
-          <div class="stat-count" id="xuper-vencidos" style="color:#f87171">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div>
-          <div class="stat-count" id="xuper-inactivos" style="color:#94a3b8">0</div>
-        </div>
+  <div class="app-container">
+    <div class="top-bar">
+      <div class="icon-btn"><i class="fa-solid fa-bars"></i></div>
+      <div class="icon-btn">
+        <i class="fa-regular fa-bell"></i>
+        <div class="badge"></div>
       </div>
     </div>
 
-    <!-- FlujoTV -->
-    <div class="card card-flujo">
-      <div class="card-title">FLUJO TV</div>
-      <div class="total-container">
-        <div class="total-label">Clientes Totales</div>
-        <div class="total-num-wrap">
-          <i class="fa-solid fa-users total-icon" style="color:#c084fc"></i>
-          <span class="total-number" id="flujo-total">0</span>
+    <div class="hero-logo">
+      <h1>👑 NINOTV <span style="color:#a855f7">VIP</span></h1>
+    </div>
+
+    <div class="section-title">
+      <i class="fa-solid fa-arrow-right"></i> PANEL PRINCIPAL
+    </div>
+    <div class="section-subtitle">
+      Resumen general de todos los servicios
+    </div>
+
+    <!-- 2x2 Cards -->
+    <div class="grid">
+      
+      <!-- XuperTV -->
+      <div class="card card-xuper">
+        <div class="card-title">XUPER TV</div>
+        <div class="total-container">
+          <div class="total-label">Clientes Totales</div>
+          <div class="total-num-wrap">
+            <i class="fa-solid fa-users total-icon" style="color:#34d399"></i>
+            <span class="total-number" id="xuper-total">0</span>
+          </div>
+        </div>
+        <div class="stats-list">
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-active"></div>Activos</div>
+            <div class="stat-count" id="xuper-activos" style="color:#4ade80">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div>
+            <div class="stat-count" id="xuper-vencer" style="color:#facc15">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div>
+            <div class="stat-count" id="xuper-vencidos" style="color:#f87171">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div>
+            <div class="stat-count" id="xuper-inactivos" style="color:#94a3b8">0</div>
+          </div>
         </div>
       </div>
-      <div class="stats-list">
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-active"></div>Activos</div>
-          <div class="stat-count" id="flujo-activos" style="color:#4ade80">0</div>
+
+      <!-- FlujoTV -->
+      <div class="card card-flujo">
+        <div class="card-title">FLUJO TV</div>
+        <div class="total-container">
+          <div class="total-label">Clientes Totales</div>
+          <div class="total-num-wrap">
+            <i class="fa-solid fa-users total-icon" style="color:#c084fc"></i>
+            <span class="total-number" id="flujo-total">0</span>
+          </div>
         </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div>
-          <div class="stat-count" id="flujo-vencer" style="color:#facc15">0</div>
+        <div class="stats-list">
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-active"></div>Activos</div>
+            <div class="stat-count" id="flujo-activos" style="color:#4ade80">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div>
+            <div class="stat-count" id="flujo-vencer" style="color:#facc15">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div>
+            <div class="stat-count" id="flujo-vencidos" style="color:#f87171">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div>
+            <div class="stat-count" id="flujo-inactivos" style="color:#94a3b8">0</div>
+          </div>
         </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div>
-          <div class="stat-count" id="flujo-vencidos" style="color:#f87171">0</div>
+      </div>
+
+      <!-- RedTV -->
+      <div class="card card-red">
+        <div class="card-title">RED TV</div>
+        <div class="total-container">
+          <div class="total-label">Clientes Totales</div>
+          <div class="total-num-wrap">
+            <i class="fa-solid fa-users total-icon" style="color:#f87171"></i>
+            <span class="total-number" id="red-total">0</span>
+          </div>
         </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div>
-          <div class="stat-count" id="flujo-inactivos" style="color:#94a3b8">0</div>
+        <div class="stats-list">
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-active"></div>Activos</div>
+            <div class="stat-count" id="red-activos" style="color:#4ade80">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div>
+            <div class="stat-count" id="red-vencer" style="color:#facc15">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div>
+            <div class="stat-count" id="red-vencidos" style="color:#f87171">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div>
+            <div class="stat-count" id="red-inactivos" style="color:#94a3b8">0</div>
+          </div>
         </div>
+      </div>
+
+      <!-- LionTV -->
+      <div class="card card-lion">
+        <div class="card-title">LION TV</div>
+        <div class="total-container">
+          <div class="total-label">Clientes Totales</div>
+          <div class="total-num-wrap">
+            <i class="fa-solid fa-users total-icon" style="color:#fbbf24"></i>
+            <span class="total-number" id="lion-total">0</span>
+          </div>
+        </div>
+        <div class="stats-list">
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-active"></div>Activos</div>
+            <div class="stat-count" id="lion-activos" style="color:#4ade80">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div>
+            <div class="stat-count" id="lion-vencer" style="color:#facc15">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div>
+            <div class="stat-count" id="lion-vencidos" style="color:#f87171">0</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div>
+            <div class="stat-count" id="lion-inactivos" style="color:#94a3b8">0</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Search Bar Below Cards -->
+    <div class="search-wrapper">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar cliente..." oninput="handleSearch()">
+        <i class="fa-solid fa-microphone"></i>
       </div>
     </div>
 
-    <!-- RedTV -->
-    <div class="card card-red">
-      <div class="card-title">RED TV</div>
-      <div class="total-container">
-        <div class="total-label">Clientes Totales</div>
-        <div class="total-num-wrap">
-          <i class="fa-solid fa-users total-icon" style="color:#f87171"></i>
-          <span class="total-number" id="red-total">0</span>
-        </div>
-      </div>
-      <div class="stats-list">
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-active"></div>Activos</div>
-          <div class="stat-count" id="red-activos" style="color:#4ade80">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div>
-          <div class="stat-count" id="red-vencer" style="color:#facc15">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div>
-          <div class="stat-count" id="red-vencidos" style="color:#f87171">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div>
-          <div class="stat-count" id="red-inactivos" style="color:#94a3b8">0</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LionTV -->
-    <div class="card card-lion">
-      <div class="card-title">LION TV</div>
-      <div class="total-container">
-        <div class="total-label">Clientes Totales</div>
-        <div class="total-num-wrap">
-          <i class="fa-solid fa-users total-icon" style="color:#fbbf24"></i>
-          <span class="total-number" id="lion-total">0</span>
-        </div>
-      </div>
-      <div class="stats-list">
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-active"></div>Activos</div>
-          <div class="stat-count" id="lion-activos" style="color:#4ade80">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-warning"></div>Por vencer</div>
-          <div class="stat-count" id="lion-vencer" style="color:#facc15">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-expired"></div>Vencidos</div>
-          <div class="stat-count" id="lion-vencidos" style="color:#f87171">0</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-left"><div class="dot dot-inactive"></div>Inactivos</div>
-          <div class="stat-count" id="lion-inactivos" style="color:#94a3b8">0</div>
-        </div>
-      </div>
-    </div>
-
+    <div class="results-container" id="resultsContainer"></div>
   </div>
-
-  <!-- Search Bar (Debajo de las tarjetas) -->
-  <div class="search-wrapper">
-    <div class="search-box">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" class="search-input" placeholder="Buscar cliente en el panel..." oninput="handleSearch()">
-      <i class="fa-solid fa-microphone"></i>
-    </div>
-  </div>
-
-  <!-- Search Results Container -->
-  <div class="results-container" id="resultsContainer"></div>
 
   <script>
-    const tg = window.Telegram.WebApp;
-    tg.ready();
-    tg.expand();
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
 
-    // URL de tu Google Apps Script
     const API_URL = "https://script.google.com/macros/s/AKfycbx4vh7RLYYmvcq6bCfG39Q0idElQeOkl45GaR_Uv5o-sYYzmjlvTJj2whsL7QzjazcS/exec";
 
-    // Cargar estadísticas automáticamente al abrir
     async function loadStats() {
       try {
         const res = await fetch(`${API_URL}?action=stats`);
@@ -486,7 +449,7 @@
             container.innerHTML = '<div class="no-results">❌ No se encontraron clientes</div>';
           }
         } catch (e) {
-          container.innerHTML = '<div class="no-results">⚠️ Error al buscar</div>';
+          container.innerHTML = '<div class="no-results">⚠️ Error en la búsqueda</div>';
         }
       }, 300);
     }
