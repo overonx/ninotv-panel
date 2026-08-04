@@ -99,14 +99,14 @@
       <h1>👑 NINOTV <span style="color:#a855f7">VIP</span></h1>
     </div>
 
-    <!-- Barra de Métricas Generales del Bot -->
+    <!-- Muestra Métricas Reales -->
     <div class="metrics-bar">
-      <div class="metric-item"><span>⭐ Combos</span><b id="meta-combos">0</b></div>
-      <div class="metric-item"><span>👻 Inactivos BD</span><b id="meta-inactivos">0</b></div>
-      <div class="metric-item"><span>📊 Total BD</span><b id="meta-total">0</b></div>
+      <div class="metric-item"><span>⭐ Combos</span><b id="meta-combos">...</b></div>
+      <div class="metric-item"><span>👻 Inactivos BD</span><b id="meta-inactivos">...</b></div>
+      <div class="metric-item"><span>📊 Total BD</span><b id="meta-total">...</b></div>
     </div>
 
-    <!-- 2x2 Grid de Servicios -->
+    <!-- 2x2 Cards Interactivos -->
     <div class="grid">
       <div class="card card-xuper" onclick="filterByService('xuper')">
         <div class="card-title">XUPER TV</div>
@@ -177,7 +177,7 @@
       </div>
     </div>
 
-    <!-- Search Bar -->
+    <!-- Barra de Búsqueda -->
     <div class="search-wrapper">
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -327,7 +327,7 @@
 
     async function renewSelectedService() {
       if (!selectedClient || selectedClient.services.length === 0) return;
-      const primaryService = selectedClient.services[0]; // Renueva el primer servicio activo
+      const primaryService = selectedClient.services[0];
       
       if (confirm(`¿Renovar 31 días a ${selectedClient.name} en ${primaryService.servicio}?`)) {
         try {
